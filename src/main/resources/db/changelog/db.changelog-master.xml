@@ -12,5 +12,5 @@
         http://www.liquibase.org/xml/ns/secure/liquibase-secure-latest.xsd">
 
 
-
+    <include file="releases/v1/001-create-roles-table.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
