@@ -1,16 +1,11 @@
 spring:
-  application:
-    name: hangarstation-core
-  server:
-    port: 8000
-
   datasource:
     url: jdbc:oracle:thin:@//localhost:1521/hangarstation
     username: hangarstation
     password: hangarstation
     driver-class-name: oracle.jdbc.OracleDriver
-#    type: com.zaxxer.hikari.HikariDataSource
-    Hikari:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
       pool-name: HikariPool
       maximum-pool-size: 20
       minimum-idle: 20
@@ -29,3 +24,13 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
+
+  application:
+    name: hangarstation-core
+
+
+
+
+
+server:
+  port: 8000
