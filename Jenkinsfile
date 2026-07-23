@@ -19,15 +19,15 @@ pipeline {
             steps { sh 'mvn test' }
         }
         stage('SonarQube') {
-            when {
-                anyOf {
-                    branch 'main'
-                    branch pattern: 'feature/**', comparator: 'GLOB'
+           environment {
+                TOKEN_SONAR = credentials('TOKEN_SONAR')
+            }
+
+
+               steps {
+                    sh 'mvn sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=$TOKEN_SONAR -Dsonar.organization=hangarstation'
                 }
-            }
-            steps {
-                sh 'mvn sonar:sonar -Dsonar.login=${TOKEN_SONAR}'
-            }
+
         }
     }
 }
