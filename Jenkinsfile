@@ -19,7 +19,7 @@ pipeline {
             steps { sh 'mvn test' }
         }
         stage('SonarQube') {
-            }
+        
             steps {
                 sh 'mvn sonar:sonar -Dsonar.login=${TOKEN_SONAR}'
             }
