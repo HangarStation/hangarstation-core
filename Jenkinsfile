@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    tools {
+        jdk 'JDK17'
+        maven 'Maven3'
+    }
+    stages {
+        stage('Checkout') {
+            steps { checkout scm }
+        }
+        stage('Build') {
+            steps { sh 'mvn clean compile' }
+        }
+        stage('Test') {
+           environment {
+                SPRING_DATASOURCE_URL = 'jdbc:oracle:thin:@//db:1521/hangarstation'
+            }
+
+            steps { sh 'mvn test' }
+        }
+        stage('SonarQube') {
+            when {
+                anyOf {
+                    branch 'main'
+                    branch pattern: 'feature/**', comparator: 'GLOB'
+                }
+            }
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.login=${TOKEN_SONAR}'
+            }
+        }
+    }
+}
