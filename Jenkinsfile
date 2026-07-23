@@ -19,6 +19,10 @@ pipeline {
             steps { sh 'mvn test' }
         }
         stage('SonarQube') {
+           environment {
+                TOKEN_SONAR = credentials('TOKEN_SONAR')
+            }
+
 
             steps {
                 sh 'mvn sonar:sonar -Dsonar.login=${TOKEN_SONAR}'
