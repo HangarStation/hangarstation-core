@@ -19,11 +19,6 @@ pipeline {
             steps { sh 'mvn test' }
         }
         stage('SonarQube') {
-            when {
-                anyOf {
-                    branch 'main'
-                    branch pattern: 'feature/**', comparator: 'GLOB'
-                }
             }
             steps {
                 sh 'mvn sonar:sonar -Dsonar.login=${TOKEN_SONAR}'
