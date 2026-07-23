@@ -12,6 +12,10 @@ pipeline {
             steps { sh 'mvn clean compile' }
         }
         stage('Test') {
+           environment {
+                SPRING_DATASOURCE_URL = 'jdbc:oracle:thin:@//db:1521/hangarstation'
+            }
+
             steps { sh 'mvn test' }
         }
         stage('SonarQube') {
