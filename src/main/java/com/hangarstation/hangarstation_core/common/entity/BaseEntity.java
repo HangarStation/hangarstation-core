@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 
 @Getter
@@ -54,12 +55,12 @@ public class BaseEntity
 
     @PrePersist
     void setCreatedAtTimeStamp(){
-        createdAt = LocalDateTime.now();
+        createdAt = LocalDateTime.now(ZoneOffset.UTC);
     }
 
     @PreUpdate
     void setUpdatedAtTimeStamp(){
-        updatedAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now(ZoneOffset.UTC);
 
     }
 
