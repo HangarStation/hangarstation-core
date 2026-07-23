@@ -24,9 +24,10 @@ pipeline {
             }
 
 
-            steps {
-                sh 'mvn sonar:sonar -Dsonar.login=${TOKEN_SONAR}'
-            }
+               steps {
+                    sh 'mvn sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=$TOKEN_SONAR -Dsonar.organization=hangarstation'
+                }
+
         }
     }
 }
