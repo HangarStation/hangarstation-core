@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="001-create-roles" author="Swalmi">
+
+        <createSequence sequenceName="SEQ_ROLES" startValue="1" incrementBy="1" />
+
+        <createTable tableName="roles">
+            <column name="id" type="NUMBER(19)">
+                <constraints primaryKey="true" primaryKeyName="pk_roles" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR2(50)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uq_roles_name"/>
+            </column>
+            <column name="description" type="VARCHAR2(255)"/>
+            <column name="is_system_role" type="NUMBER(1)" defaultValueNumeric="0"/>
+
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="SYSTIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP"/>
+            <column name="updated_by" type="VARCHAR2(100)"/>
+
+            <column name="version" type="NUMBER(10)" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="NUMBER(1)" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="TIMESTAMP"/>
+            <column name="deleted_by" type="VARCHAR2(100)"/>
+        </createTable>
+
+<!--        <createIndex tableName="roles" indexName="idx_roles_name">-->
+<!--            <column name="name"/>-->
+<!--        </createIndex>-->
+
+        <insert tableName="roles">
+            <column name="id" valueSequenceNext="SEQ_ROLES"/>
+            <column name="name" value="SUPER_ADMIN"/>
+            <column name="description" value="Full system access across all tenants"/>
+            <column name="is_system_role" valueNumeric="1"/>
+            <column name="created_by" value="system_migration"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="id" valueSequenceNext="SEQ_ROLES"/>
+            <column name="name" value="ADMIN"/>
+            <column name="description" value="Tenant-level administrator"/>
+            <column name="is_system_role" valueNumeric="1"/>
+            <column name="created_by" value="system_migration"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="id" valueSequenceNext="SEQ_ROLES"/>
+            <column name="name" value="ENGINEERING_MANAGER"/>
+            <column name="description" value="Oversees maintenance operations and planning"/>
+            <column name="is_system_role" valueNumeric="1"/>
+            <column name="created_by" value="system_migration"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="id" valueSequenceNext="SEQ_ROLES"/>
+            <column name="name" value="PLANNER"/>
+            <column name="description" value="Schedules maintenance tasks and allocates resources"/>
+            <column name="is_system_role" valueNumeric="1"/>
+            <column name="created_by" value="system_migration"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="id" valueSequenceNext="SEQ_ROLES"/>
+            <column name="name" value="INSPECTOR"/>
+            <column name="description" value="Verifies completed maintenance work for compliance"/>
+            <column name="is_system_role" valueNumeric="1"/>
+            <column name="created_by" value="system_migration"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="id" valueSequenceNext="SEQ_ROLES"/>
+            <column name="name" value="TECHNICIAN"/>
+            <column name="description" value="Executes maintenance tasks on aircraft"/>
+            <column name="is_system_role" valueNumeric="1"/>
+            <column name="created_by" value="system_migration"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="id" valueSequenceNext="SEQ_ROLES"/>
+            <column name="name" value="VIEWER"/>
+            <column name="description" value="Read-only access to specific modules"/>
+            <column name="is_system_role" valueNumeric="1"/>
+            <column name="created_by" value="system_migration"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>
