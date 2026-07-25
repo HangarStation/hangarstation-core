@@ -8,10 +8,12 @@ Enterprise Aircraft Maintenance Intelligence backend — domain-based Spring Boo
 - **CI/CD:** Jenkins, SonarQube
 
 ## Quick Start
+
 ```bash
 docker compose up -d
 ./mvnw spring-boot:run
 ```
+
 The application starts on http://localhost:8000.
 
 ## CI/CD Status
