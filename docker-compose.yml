@@ -21,7 +21,32 @@ services:
       - redis_data:/data
     restart: unless-stopped
 
+  sonar:
+    container_name: sonarqube
+    image: sonarqube:latest
+    ports:
+      - "9000:9000"
+    restart: unless-stopped
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+
+
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    restart: unless-stopped
+    ports:
+      - "8060:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+
+
+
 volumes:
   oracle_data:
   redis_data:
+  sonarqube_data:
+  jenkins_home:
+
 
