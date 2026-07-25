@@ -29,6 +29,7 @@ com.hangarstation/
 │ └── compliance/ → AD/SB tracking
 └── integration/ → External system adapters (FAA, EASA, SAP)
 
+
 ## Sprint 1 Deliverables
 - Spring Boot project with domain-based package structure
 - Oracle XE connected with Liquibase migrations
